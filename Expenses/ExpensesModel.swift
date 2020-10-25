@@ -12,9 +12,6 @@ class ExpensesData: Codable {
     private var data: [Expenses] = []
 
     init() {
-//        let defaults = UserDefaults.standard
-//                defaults.removeObject(forKey: "ExpensesDataForApplication")
-//                defaults.synchronize()
         if let downloadedModels = getFromUserDefaults() {
             self.initWith(downloadedModels)
         } else {
@@ -98,7 +95,6 @@ class ExpensesData: Codable {
         save()
     }
 
-
     private func save() {
         let jsonEncoder = JSONEncoder()
         let jsonData = try! jsonEncoder.encode(self.data)
@@ -120,15 +116,21 @@ class ExpensesData: Codable {
 
     private func create() {
         let data = Expenses()
-        data.models.append(ExpensesModel(name: "пилон", limit: 14500))
-        data.models.append(ExpensesModel(name: "психолог", limit: 8000))
-        data.models.append(ExpensesModel(name: "квартира", limit: 15500))
-        data.models.append(ExpensesModel(name: "зубы", limit: 10000))
-        data.models.append(ExpensesModel(name: "косметология", limit: 8000))
-        data.models.append(ExpensesModel(name: "хозяйство", limit: 8000))
-        data.models.append(ExpensesModel(name: "другое", limit: 10000))
+        data.models.append(ExpensesModel(name: "item 1", limit: 14500))
+        data.models.append(ExpensesModel(name: "item 2", limit: 8000))
+        data.models.append(ExpensesModel(name: "item 3", limit: 15500))
+        data.models.append(ExpensesModel(name: "item 4", limit: 10000))
+        data.models.append(ExpensesModel(name: "item 5", limit: 8000))
+        data.models.append(ExpensesModel(name: "item 6", limit: 8000))
+        data.models.append(ExpensesModel(name: "item 7", limit: 10000))
         self.data.append(data)
         save()
+    }
+
+    private func clear() {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "ExpensesDataForApplication")
+        defaults.synchronize()
     }
 
 }
